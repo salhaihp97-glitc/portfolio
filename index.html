@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>المهندس صالح محمد الاحبش | مهندس علوم حاسوب وأمن سيبراني</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-dark: #0b111e;
+            --bg-card: #151f32;
+            --primary: #00f2fe;
+            --primary-hover: #4facfe;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --accent-green: #10b981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+        }
+
+        nav {
+            background: rgba(21, 31, 50, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        header.hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 9rem 2rem 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            min-height: 75vh;
+        }
+
+        .hero-text {
+            flex: 1.2;
+        }
+
+        .hero-text .badge {
+            background: rgba(0, 242, 254, 0.1);
+            color: var(--primary);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(0, 242, 254, 0.2);
+        }
+
+        .hero-text h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            line-height: 1.3;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(to left, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text p {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            text-align: justify;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+            color: #0b111e;
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 242, 254, 0.4);
+        }
+
+        .btn-secondary {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--primary);
+        }
+
+        .hero-avatar {
+            flex: 0.8;
+            display: flex;
+            justify-content: center;
+        }
+
+        .avatar-container {
+            position: relative;
+            width: 260px;
+            height: 260px;
+        }
+
+        .avatar-glow {
+            width: 100%;
+            height: 100%;
+            background: var(--bg-card);
+            border-radius: 30px;
+            border: 2px solid rgba(0, 242, 254, 0.3);
+            box-shadow: 0 0 40px rgba(0, 242, 254, 0.15);
+            transform: rotate(5deg);
+            transition: transform 0.3s;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .avatar-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .avatar-container .fallback-icon {
+            font-size: 6.5rem;
+            color: var(--primary);
+            display: block;
+        }
+
+        .avatar-glow:hover {
+            transform: rotate(0deg);
+        }
+
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        section h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        section h2::after {
+            content: '';
+            height: 2px;
+            background: linear-gradient(to left, var(--primary), transparent);
+            flex: 1;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+        }
+
+        .project-detailed-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-small-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-top: 3px solid var(--primary);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-title h3 {
+            font-size: 1.6rem;
+            color: #fff;
+            margin-bottom: 0.3rem;
+        }
+
+        .project-type {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent-green);
+            padding: 0.2rem 1rem;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .project-body h4 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin: 1.2rem 0 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-body p {
+            color: var(--text-muted);
+            text-align: justify;
+            font-size: 1rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .tech-stack span {
+            background: rgba(0, 242, 254, 0.05);
+            border: 1px solid rgba(0, 242, 254, 0.15);
+            color: var(--primary);
+            padding: 0.2rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .project-links {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .project-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: color 0.2s;
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(0, 242, 254, 0.03);
+        }
+
+        .project-links a:hover {
+            color: var(--primary);
+            background: rgba(0, 242, 254, 0.1);
+            border-color: var(--primary);
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skills-category {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+        .skills-category h3 {
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid rgba(0, 242, 254, 0.2);
+            padding-bottom: 0.5rem;
+        }
+
+        .skills-category ul {
+            list-style: none;
+        }
+
+        .skills-category ul li {
+            color: var(--text-muted);
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .skills-category ul li i {
+            color: var(--primary);
+            font-size: 0.8rem;
+        }
+
+        .contact-box {
+            background: var(--bg-card);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid rgba(0, 242, 254, 0.1);
+        }
+
+        .contact-grid {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.2s;
+        }
+
+        .contact-item:hover {
+            color: var(--primary);
+        }
+
+        .contact-item i {
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+
+        footer {
+            background: #070b14;
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+            margin-top: 5rem;
+        }
+
+        @media (max-width: 768px) {
+            header.hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 7rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+            }
+
+            .project-detailed-card,
+            .project-small-card {
+                padding: 1.5rem;
+            }
+
+            .project-title h3 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo" id="nav-logo"><i class="fas fa-terminal"></i> صالح أبو محمد </a>
+            <ul class="nav-links">
+                <li><a href="#about">من أنا</a></li>
+                <li><a href="#projects">المشاريع الهندسية</a></li>
+                <li><a href="#skills">المهارات التقنية</a></li>
+                <li><a href="#contact">التواصل</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero" id="about">
+        <div class="hero-text">
+            <span class="badge" id="hero-badge"><i class="fas fa-graduation-cap"></i> مهندس علوم حاسوب</span>
+            <h1 id="hero-name">مرحباً بك</h1>
+            <p id="hero-bio">جاري تحميل البيانات التعريفية للموقع...</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">استعراض المشاريع الهندسية</a>
+                <a href="#contact" class="btn btn-secondary">اتصل بي مباشرة</a>
+            </div>
+        </div>
+        <div class="hero-avatar">
+            <div class="avatar-container">
+                <div class="avatar-glow">
+                    <img id="user-avatar" src="" alt="صورة المهندس الشخصية">
+                    <i id="avatar-fallback" class="fas fa-shield-halved fallback-icon"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="projects">
+        <h2><i class="fas fa-folder-open"></i> المشاريع الهندسية ومعرض الأعمال</h2>
+        <div class="projects-grid" id="projects-target"></div>
+    </section>
+
+    <section id="skills">
+        <h2><i class="fas fa-laptop-code"></i> المهارات والخبرات الهندسية</h2>
+        <div class="skills-container" id="skills-target"></div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-box">
+            <h2><i class="fas fa-envelope-open-text"></i> فتح قنوات الاتصال المهنية</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">هل تبحث عن مهندس حاسوب يمتلك الكفاءة لتصميم شبكاتك
+                وتأمينها، أو بناء أنظمة ذكاء اصطناعي لحماية أصولك الرقمية؟ يسعدني جداً تواصلك لمناقشة المشاريع وفرص
+                العمل المشتركة.</p>
+            <div class="contact-grid" id="contact-target"></div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© <span id="year"></span> <span id="footer-name">صالح محمد الاحبش</span>. جميع الحقوق محفوظة ومستضاف عبر
+            GitHub Pages.</p>
+    </footer>
+
+    <script>
+        document.getElementById('year').innerText = new Date().getFullYear();
+
+        // دالة جلب البيانات من ملف data.json الخارجي
+        async function loadPortfolioData() {
+            try {
+                const response = await fetch('data.json');
+                if (!response.ok) {
+                    throw new Error(`خطأ في تحميل ملف البيانات: ${response.status}`);
+                }
+                const data = await response.json();
+                renderProfile(data);
+            } catch (error) {
+                console.error("فشل جلب البيانات:", error);
+                document.getElementById('hero-bio').innerText = "حدث خطأ أثناء تحميل البيانات، يرجى التحقق من تشغيل السيرفر المحلي وجودة ملف data.json.";
+            }
+        }
+
+        // بناء وعرض الواجهات بناءً على ملف الـ json المستدعى
+        function renderProfile(data) {
+            document.getElementById('hero-name').innerText = `مرحباً، أنا المهندس ${data.profile.name}`;
+            document.getElementById('footer-name').innerText = data.profile.name;
+            document.getElementById('hero-bio').innerText = data.profile.bio;
+            document.getElementById('hero-badge').innerHTML = `<i class="fas fa-graduation-cap"></i> ${data.profile.title}`;
+            //document.getElementById('nav-logo').innerHTML = `<i class="fas fa-terminal"></i> ${data.profile.name.split(' ')[0]}.dev`;
+
+            const imgElement = document.getElementById('user-avatar');
+            const fallbackElement = document.getElementById('avatar-fallback');
+            if (data.profile.avatar_url && data.profile.avatar_url !== "") {
+                imgElement.src = data.profile.avatar_url;
+                imgElement.style.display = 'block';
+                fallbackElement.style.display = 'none';
+            }
+
+            const projectsTarget = document.getElementById('projects-target');
+            projectsTarget.innerHTML = ''; // تنظيف المحتوى قبل الحقن
+
+            data.projects.forEach(project => {
+                let projectHtml = '';
+
+                // هندسة بناء الروابط لكافة التصاميم بشكل موحد وبدون إهمال
+                let linksHtml = '';
+                if (project.links && project.links.length > 0) {
+                    linksHtml += `<div class="project-links">`;
+                    project.links.forEach(link => {
+                        let icon = link.type === 'github' ? 'fab fa-github' : 'fas fa-external-link-alt';
+                        linksHtml += `<a href="${link.url}" target="_blank"><i class="${icon}"></i> ${link.label}</a>`;
+                    });
+                    linksHtml += `</div>`;
+                }
+
+                if (project.layout === 'detailed') {
+                    let sectionsHtml = '';
+                    project.sections.forEach(sec => {
+                        sectionsHtml += `<h4><i class="${sec.icon}"></i> ${sec.heading}</h4><p>${sec.text}</p>`;
+                    });
+                    let tagsHtml = '';
+                    project.tags.forEach(tag => { tagsHtml += `<span>${tag}</span>`; });
+
+                    projectHtml = `
+                        <div class="project-detailed-card">
+                            <div class="project-header">
+                                <div class="project-title">
+                                    <h3>${project.title}</h3>
+                                    <p style="font-size: 0.9rem; color: var(--primary);">${project.subtitle}</p>
+                                </div>
+                                <span class="project-type">${project.type}</span>
+                            </div>
+                            <div class="project-body">${sectionsHtml}</div>
+                            <div class="tech-stack">${tagsHtml}</div>
+                            ${linksHtml} 
+                        </div>
+                    `;
+                } else {
+                    let tagsHtml = '';
+                    project.tags.forEach(tag => { tagsHtml += `<span>${tag}</span>`; });
+
+                    projectHtml = `
+                        <div class="project-small-card">
+                            <div class="project-header" style="border-bottom:none; margin-bottom:0; padding-bottom:0;">
+                                <div class="project-title"><h3 style="font-size:1.3rem;">${project.title}</h3></div>
+                                <span class="project-type">${project.type}</span>
+                            </div>
+                            <div class="project-body" style="margin-top:1rem;"><p>${project.sections[0].text}</p></div>
+                            <div class="tech-stack">${tagsHtml}</div>
+                            ${linksHtml}
+                        </div>
+                    `;
+                }
+                projectsTarget.insertAdjacentHTML('beforeend', projectHtml);
+            });
+
+            const skillsTarget = document.getElementById('skills-target');
+            skillsTarget.innerHTML = '';
+            data.skills.forEach(cat => {
+                let itemsHtml = '';
+                cat.items.forEach(item => { itemsHtml += `<li><i class="fas fa-check"></i> ${item}</li>`; });
+                skillsTarget.insertAdjacentHTML('beforeend', `
+                    <div class="skills-category">
+                        <h3><i class="${cat.icon}"></i> ${cat.category}</h3>
+                        <ul>${itemsHtml}</ul>
+                    </div>
+                `);
+            });
+
+            document.getElementById('contact-target').innerHTML = `
+                <a href="mailto:${data.contact.email}" class="contact-item"><i class="fas fa-envelope"></i> البريد الإلكتروني</a>
+                <a href="${data.contact.linkedin}" target="_blank" class="contact-item"><i class="fab fa-linkedin"></i> لينكد إن (LinkedIn)</a>
+                <a href="${data.contact.github}" target="_blank" class="contact-item"><i class="fab fa-github"></i> بوابة GitHub</a>
+            `;
+        }
+
+        // استدعاء دالة التشغيل فور تحميل الصفحة عبر السيرفر الافتراضي
+        window.addEventListener('DOMContentLoaded', loadPortfolioData);
+    </script>
+</body>
+
+</html>
