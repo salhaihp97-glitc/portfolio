@@ -7,6 +7,34 @@
   },
   "projects": [
     {
+  "title": "معرض الأعمال الهندسي الشخصي",
+  "description": "موقع ويب شخصي متكامل ومتجاوب مصمم خصيصاً للمهندسين لاستعراض مشاريعهم وخبراتهم التقنية، يعتمد على فصل البيانات عن واجهة العرض باستخدام JSON لتسهيل التحديث.",
+  "thumbnail": "my-photo.jpg", 
+  "layout": "detailed",
+  "links": [
+    {
+      "text": "المستودع (GitHub)",
+      "url": "https://github.com/salhaihp97-glitc/protfolio"
+    },
+    {
+      "text": "المعاينة الحية (Live Demo)",
+      "url": "https://salhaihp97-glitc.github.io/portfolio/"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "بنية النظام والهندسة التقنية",
+      "content": "تم بناء المشروع باستخدام هيكلية فصل البيانات (Data Decoupling) حيث يتم جلب كافة البيانات ديناميكياً عبر JavaScript Fetch API من ملف JSON محلي، مما يلغي الحاجة لتعديل ملفات HTML عند إضافة مشاريع جديدة."
+    },
+    {
+      "heading": "التقنيات المستخدمة",
+      "content": "HTML5, CSS3 (Custom Properties & Media Queries), JavaScript (ES6+), JSON, GitHub Pages للتكامل والنشر المستمر."
+    }
+  ]
+}
+
+    
+    ,{
       "id": 1,
       "title": "تصميم وتنفيذ بنية تحتية لشبكة مؤسسية متقدمة وتأمينها",
       "subtitle": "محاكاة هندسية متكاملة متوافقة مع ممارسات Cisco العالمية",
